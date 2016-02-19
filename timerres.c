@@ -34,8 +34,8 @@ void benchmark (int work){
 		return;
 	}
 
-	if(!work) Filltimes_empty(mytimes);
-	else	  Filltimes(mytimes);
+	if(!work) EmptyTimes(mytimes);
+	else	  WorkTimes(mytimes);
 
 	for(j=0; j<BOUND_OF_LOOP; j++){
 		max_dev=0;
@@ -43,7 +43,9 @@ void benchmark (int work){
 		max_time=0;
 
 		for(i=0;i<SIZE_OF_STAT;i++){
-			if(((min_time==0)||(min_time>mytimes[j][i]))&&(mytimes[j][i]!=0)) min_time=mytimes[j][i];
+		//	if(((min_time==0)||(min_time>mytimes[j][i]))&&(mytimes[j][i]!=0)) min_time=mytimes[j][i];
+		if(((min_time==0)||(min_time>mytimes[j][i]))) min_time=mytimes[j][i];
+
 			if(max_time<mytimes[j][i]) max_time = mytimes[j][i];
 		}
 		max_dev = max_time-min_time;
@@ -64,7 +66,7 @@ void benchmark (int work){
 	var_of_mins = var_calc(min_values,BOUND_OF_LOOP);
 
 
-	fprintf(stdout, "\n total number of spurious min values = %d", spurious);
+	if(work) fprintf(stdout, "\n total number of spurious min values = %d", spurious);
 	fprintf(stdout, "\n total variance = %llu", (tot_var/BOUND_OF_LOOP));
 	fprintf(stdout, "\n absloute max deviation = %llu", max_dev_all);
 	fprintf(stdout, "\n variance of variances = %llu", var_of_vars);

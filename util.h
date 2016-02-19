@@ -53,7 +53,7 @@ uint64_t inline getCycles (rdtsc_timeval_t t){
 #define BOUND_OF_LOOP 1000
 
 
-void inline Filltimes_empty (uint64_t ** times){
+void inline EmptyTimes (uint64_t ** times){
 	uint64_t a,b,c,d;
 	mytimer_t timer;
 	int i,j;	
@@ -101,7 +101,7 @@ void inline measured_loop(unsigned int n, volatile int *var){
 }
 
 
-void inline Filltimes (uint64_t ** times){
+void inline WorkTimes (uint64_t ** times){
 	uint64_t a,b,c,d;
 	mytimer_t timer;
 	int i,j;	
